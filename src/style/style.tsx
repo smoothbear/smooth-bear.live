@@ -5,26 +5,26 @@ interface Props {
     children: React.ReactNode
 }
 
-export function PC(props: Props) {
+export function PC({ children } : Props) {
     const isMobile = useMediaQuery({
         query: "(min-width:1024px)"
     });
 
-    return <React.Fragment>{isMobile && props.children}</React.Fragment>
+    return <React.Fragment>{isMobile && children}</React.Fragment>
 }
 
-export function Tablet(props: Props) {
+export function Tablet({ children }: Props) {
     const isTablet = useMediaQuery({
         query: "(min-width:768px) and (max-width:1023px)"
     });
 
-    return <React.Fragment>{isTablet && props.children} </React.Fragment>
+    return <React.Fragment>{isTablet && children} </React.Fragment>
 }
 
-export function Mobile(props: Props) {
+export function Mobile({ children }: Props) {
     const isMobile = useMediaQuery({
         query: "(max-width:767px)"
     });
 
-    return <React.Fragment>{isMobile && props.children}</React.Fragment>
+    return <React.Fragment>{isMobile && children}</React.Fragment>
 }

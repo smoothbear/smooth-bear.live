@@ -11,7 +11,7 @@ export const PCBar = styled.div`
     background-color: white;
     position: fixed;
     width: 100%;
-    height: 9.5%;
+    height: 7.5%;
     box-shadow: 0rem 0rem 1rem 0rem #252525;
 `
 
@@ -22,7 +22,7 @@ export const Categories = styled.ul`
 
 export const Category = styled.li`
     font-size: 1.5rem;
-    padding-top: 0.9%;
+    padding-top: 0.3%;
     padding-left: 5%;
     color: black;
     
@@ -32,13 +32,12 @@ export const Category = styled.li`
     }
 `
 export const MenuImage = styled.img`
-    padding-top: 0.9%;
+    padding-top: 0.4%;
     padding-left: 0.5%;
-    height: 1.8rem;
-    width: 1.8rem;
+    height: 1.5rem;
+    width: 1.5rem;
 
     &:hover {
         cursor: pointer;
-        fill: grey;
     }
 `
