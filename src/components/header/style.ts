@@ -68,7 +68,7 @@ export const Category = styled.li<{ opacity: string, visibility: string, borderB
 export const MenuImage = styled.svg`
     padding-top: 0.6%;
     padding-left: 0.3%;
-    height: 1.rem;
+    height: 1.1rem;
     width: 1.1rem;
     fill: dimgray;
 
