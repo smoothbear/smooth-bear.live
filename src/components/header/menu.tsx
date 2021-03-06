@@ -1,12 +1,12 @@
 import { Category } from "./menu_style";
-import header from "./header";
 
-function Menu() {
+function Menu(props: { height: string, paddingTop: string }) {
     return (
         <>
-        <header />
         <div>
-            <Category />
+            <Category height={props.height} paddingTop={props.paddingTop}>
+                
+            </Category>
         </div>
        </>
     )

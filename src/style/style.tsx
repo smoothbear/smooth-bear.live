@@ -18,7 +18,7 @@ export function Tablet({ children }: Props) {
         query: "(min-width:768px) and (max-width:1023px)"
     });
 
-    return <React.Fragment>{isTablet && children} </React.Fragment>
+     return <React.Fragment>{isTablet && children} </React.Fragment>
 }
 
 export function Mobile({ children }: Props) {
