@@ -1,6 +1,6 @@
 import React, { useState } from 'react'; 
 import { Mobile, PC, Tablet } from "../../style/style";
-import { PCBar, Categories, Category, MenuImage } from "./style";
+import { PCBar, Categories, Category, MenuImage, Div } from "./style";
 import Menu from "./menu"; 
 
 interface Props {
@@ -13,9 +13,10 @@ interface Props {
     setOpacity: React.Dispatch<React.SetStateAction<string>>;
     visibility: string;
     setVisibility: React.Dispatch<React.SetStateAction<string>>;
+    categoryColor: string;
 }
 
-function Header({toggle, setToggle, color, height, setHeight, opacity, setOpacity, visibility, setVisibility}: Props) {
+function Header({toggle, setToggle, color, height, setHeight, opacity, setOpacity, visibility, setVisibility, categoryColor }: Props) {
     const [categoryClicked, setCategoryClicked] = useState<number>(1);
 
     const borderBottom: string = "0.02rem solid";
@@ -26,7 +27,7 @@ function Header({toggle, setToggle, color, height, setHeight, opacity, setOpacit
         setToggle(!toggle);
         if (window.pageYOffset > 20) {
             if (toggle) {
-                window.scrollTo({top: 0, behavior: "smooth"});
+                window.scrollTo({top: 0, behavior: "smooth"});                
             }
         }
         toggle ? setHeight("5") : setHeight("0");
@@ -34,24 +35,39 @@ function Header({toggle, setToggle, color, height, setHeight, opacity, setOpacit
         toggle ? setVisibility("hidden") : setVisibility("visible");
     }
 
+    const home = () => {
+        setCategoryClicked(1);
+        window.scrollTo({top: 0, behavior: "smooth"});
+    };
+
     return (
         <>
             <PC>
-                <div style={{width: "100%"}}>
+                <Div position = {toggle ? "fixed" : ""} zIndex={toggle ? 99 : 0}>
                     <PCBar color={color}>
                         <Categories>
-                            <MenuImage viewBox={toggle ? "0 0 451.847 451.847" : "0 0 329.26933 329"} onClick={onClicked}>
+                            <MenuImage viewBox={toggle ? "0 0 451.847 451.847" : "0 0 329.26933 329"}
+                                       fill={toggle ? categoryColor : "dimgray"} animation={window.pageYOffset > 20} onClick={onClicked}>
                                 <path d={toggle ? menuIcon : closeIcon}></path>
                             </MenuImage>
-                            <Category opacity={opacity} visibility={visibility} borderBottom={categoryClicked === 1 ? borderBottom : "none"} onClick={() => setCategoryClicked(1)}>Home</Category>
-                            <Category opacity={opacity} visibility={visibility} borderBottom={categoryClicked === 2 ? borderBottom : "none"} onClick={() => setCategoryClicked(2)}>Introduce</Category>
-                            <Category opacity={opacity} visibility={visibility} borderBottom={categoryClicked === 3 ? borderBottom : "none"} onClick={() => setCategoryClicked(3)}>Project</Category>
+                            <Category opacity={opacity} visibility={visibility} 
+                                      borderBottom={categoryClicked === 1 ? borderBottom : "none"}
+                                      color={categoryColor} onClick={home}
+                                      animation={window.pageYOffset > 20}>Home</Category>
+                            <Category opacity={opacity} visibility={visibility} 
+                                      borderBottom={categoryClicked === 2 ? borderBottom : "none"} 
+                                      color={categoryColor} onClick={() => setCategoryClicked(2)}
+                                      animation={window.pageYOffset > 20}>Introduce</Category>
+                            <Category opacity={opacity} visibility={visibility} 
+                                      borderBottom={categoryClicked === 3 ? borderBottom : "none"}
+                                      color={categoryColor} onClick={() => setCategoryClicked(3)}
+                                      animation={window.pageYOffset > 20}>Project</Category>
                         </Categories>
                     </PCBar>
                     
                     <Menu height={height} paddingTop={toggle ? "0" : "5"}></Menu>      
                     
-                </div>
+                </Div>
             </PC>
             <Tablet>
                 Tablet

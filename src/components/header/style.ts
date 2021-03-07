@@ -1,5 +1,12 @@
 import styled, { keyframes } from 'styled-components';
 
+export const Div = styled.div<{ position: string, zIndex: number }>`
+    width: 100%;
+    position: ${({position}) => position};
+    z-index: ${({zIndex}) => zIndex};
+    top: 0;
+`
+
 export const HeaderWrapper = styled.header`
     position: fixed;
     display: flex;
@@ -49,11 +56,11 @@ const svgRainbow = keyframes`
     100% { fill: red; }
 `
 
-export const Category = styled.li<{ opacity: string, visibility: string, borderBottom: string }>`
+export const Category = styled.li<{ opacity: string, visibility: string, borderBottom: string, animation: boolean }>`
     font-size: 1.5rem;
     padding-top: 0.4%;
     margin-left: 5%;
-    color: dimgray;
+    color: ${(props) => props.color};
     opacity: ${(props) => props.opacity};
     transition: 0.3s;
     visibility: ${(props) => props.visibility};
@@ -62,18 +69,18 @@ export const Category = styled.li<{ opacity: string, visibility: string, borderB
 
     &:hover {
         cursor: pointer;
-        animation: ${rainbow} 4s infinite;
+        animation: ${({animation}) => animation ? rainbow : ""} 4s infinite;
     }
 `
-export const MenuImage = styled.svg`
+export const MenuImage = styled.svg<{fill: string, animation: boolean}>`
     padding-top: 0.6%;
     padding-left: 0.3%;
     height: 1.1rem;
     width: 1.1rem;
-    fill: dimgray;
+    fill: ${({fill}) => fill};
 
     &:hover {
         cursor: pointer;
-        animation: ${svgRainbow} 4s infinite;
+        animation: ${({animation}) => animation ? svgRainbow : ""} 4s infinite;
     }
 `
